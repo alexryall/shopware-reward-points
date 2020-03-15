@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="AlexRyall\RewardPoints\Subscriber\OrderWritten" public="true">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="AlexRyall\RewardPoints\Service\AwardPoints" />
+            <argument type="service" id="AlexRyall\RewardPoints\Service\SpendPoints" />
+        </service>
+
+        <service id="AlexRyall\RewardPoints\Service\AwardPoints">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="ar_rewardpoints_transaction.repository"/>
+        </service>
+
+        <service id="AlexRyall\RewardPoints\Transaction\TransactionEntityDefinition">
+            <tag name="shopware.entity.definition" entity="ar_rewardpoints_transaction" />
+        </service>
+
+        <service id="AlexRyall\RewardPoints\Service\SpendPoints">
+            <argument type="service" id="session"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="ar_rewardpoints_transaction.repository"/>
+            <argument type="service" id="order.repository"/>
+        </service>
+
+        <service id="AlexRyall\RewardPoints\Controller\SpendController" public="true">
+            <argument type="service" id="AlexRyall\RewardPoints\Service\SpendPoints"/>
+        </service>
+
+        <service id="AlexRyall\RewardPoints\Subscriber\CheckoutConfirmPageLoaded">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="AlexRyall\RewardPoints\Service\SpendPoints" />
+        </service>
+
+        <service id="AlexRyall\RewardPoints\Core\Checkout\ApplyDiscount">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\AbsolutePriceCalculator"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="AlexRyall\RewardPoints\Service\SpendPoints" />
+
+            <!-- after product cart processor -->
+            <tag name="shopware.cart.processor" priority="4500"/>
+        </service>
+    </services>
+</container>

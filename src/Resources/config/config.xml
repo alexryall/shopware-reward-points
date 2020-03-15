@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>General settings</title>
+        <input-field type="bool">
+            <name>enabled</name>
+            <label>Enabled</label>
+        </input-field>
+        <input-field type="int">
+            <name>earningRate</name>
+            <label>Earning Rate</label>
+            <defaultValue>10</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>spendingRate</name>
+            <label>Spending Rate</label>
+            <defaultValue>10</defaultValue>
+        </input-field>
+    </card>
+</config>

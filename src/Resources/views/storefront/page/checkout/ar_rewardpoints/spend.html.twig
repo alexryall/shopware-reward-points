@@ -1,0 +1,24 @@
+{% if page.extensions.ar_rewardpoints.total > 0 %}
+    <form action="{{ path('frontend.checkout.spend_reward_points.change-amount') }}"
+          class="spend-reward-points-container"
+          method="post"
+          data-form-auto-submit="true">
+
+        {% block page_checkout_spend_reward_points_form_csrf %}
+            {{ sw_csrf('frontend.checkout.spend_reward_points.change-amount') }}
+        {% endblock %}
+
+        {% block page_checkout_spend_reward_points_redirect %}
+            <input type="hidden"
+                   name="redirectTo"
+                   value="frontend.checkout.confirm.page">
+        {% endblock %}
+
+        <label>
+            <b>Reward points</b>
+            <input type="number" name="ar_rewardpoints" value="{{ page.extensions.ar_rewardpoints.used }}" max="{{ page.extensions.ar_rewardpoints.total }}" style="width:50px;"/>
+            {{ page.extensions.ar_rewardpoints.total }} points available
+        </label>
+
+    </form>
+{% endif %}

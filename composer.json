@@ -1,0 +1,30 @@
+{
+  "name": "alexryall/reward-points",
+  "description": "A plugin for earning and spending reward points",
+  "version": "v1.0.0",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alex Ryall",
+      "role": "Web Developer"
+    }
+  ],
+  "require": {
+    "shopware/core": "6.1.*"
+  },
+  "extra": {
+    "shopware-plugin-class": "AlexRyall\\RewardPoints\\RewardPoints",
+    "label": {
+      "en-GB": "Reward Points"
+    },
+    "description": {
+      "en-GB": "A plugin for earning and spending reward points"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "AlexRyall\\RewardPoints\\": "src/"
+    }
+  }
+}
