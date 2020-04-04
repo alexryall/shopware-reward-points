@@ -1,6 +1,6 @@
 {
   "name": "alexryall/reward-points",
-  "description": "A plugin for earning and spending reward points",
+  "description": "Shopware 6 plugin for earning and spending reward points",
   "version": "v1.0.0",
   "type": "shopware-platform-plugin",
   "license": "MIT",
